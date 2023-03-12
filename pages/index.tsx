@@ -1,7 +1,12 @@
 import React from "react";
+import EventList from "./../components/events/EventList";
 
 function HomePage() {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <EventList />
+    </div>
+  );
 }
 
 export default HomePage;
