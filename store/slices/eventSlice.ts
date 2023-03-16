@@ -1,20 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import data from "../../public/data/dummy-data";
-import { dataType } from "@/public/data/my-types";
+import data from "../../utils/data/dummy-data";
+import { dataType, iconsSize } from "@/utils/types/my-types";
 
 interface typeState {
   allEvents: Array<dataType>;
   featuredEvents: object[];
   filteredEvents: object[];
-  selectedEvent: object | undefined;
+  selectedEvent: dataType;
+  iconColor: string;
+  iconSize: iconsSize;
 }
 
 const initialState: typeState = {
   allEvents: data,
   featuredEvents: [],
   filteredEvents: [],
-  selectedEvent: {},
+  selectedEvent: data[0],
+  iconColor: "currentColor",
+  iconSize: "eventList",
 };
 
 const eventSlice = createSlice({
@@ -39,8 +43,16 @@ const eventSlice = createSlice({
 
       state.filteredEvents = filteredEventList;
     },
-    getEventById(state, action: PayloadAction<string>) {
-      state.selectedEvent = data.find((event) => event.id === action.payload);
+    setEventById(state, action: PayloadAction<string>) {
+      state.selectedEvent = data.find(
+        (event) => event.id === action.payload
+      ) as object;
+    },
+    setIconColor(state, action: PayloadAction<string>) {
+      state.iconColor = action.payload;
+    },
+    setIconSize(state, action: PayloadAction<iconsSize>) {
+      state.iconSize = action.payload;
     },
   },
 });
@@ -50,7 +62,9 @@ export const {
   getAllEvents,
   getFeaturedEvents,
   getFilteredEvents,
-  getEventById,
+  setEventById,
+  setIconColor,
+  setIconSize,
 } = eventSlice.actions;
 
 export default eventSlice.reducer;

@@ -8,7 +8,16 @@ module.exports = {
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primaryClr: "#cffafe",
+        secondaryClr: "#22d3ee",
+        primaryClrDark: "#334155",
+        secondaryClrDark: "#262626",
+        btnClr: "#4ade80",
+        btnClrDark: "#0891b2",
+      },
+    },
   },
   plugins: [require("tw-elements/dist/plugin.js")],
 };

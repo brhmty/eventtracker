@@ -8,7 +8,7 @@ function ArrowRight() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="md:w-7 w-4 lg:h-4 md:h-7 h-3"
+      className="md:w-7 sm:w-5 w-4 lg:h-4 md:h-7 sm:h-6 h-3"
     >
       <path
         strokeLinecap="round"

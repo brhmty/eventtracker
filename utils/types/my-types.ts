@@ -7,3 +7,5 @@ export interface dataType {
   image?: string;
   isFeatured?: boolean;
 }
+
+export type iconsSize = "eventList" | "eventId";

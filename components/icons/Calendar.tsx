@@ -1,6 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 function Calendar() {
+  const { iconColor, iconSize } = useSelector(
+    (state: RootState) => state.events
+  );
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +14,11 @@ function Calendar() {
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="lg:w-6 md:w-9 w-6 lg:h-5 md:h-7 h-4"
+      className={`${
+        iconSize === "eventId"
+          ? "2xl:w-9 xl:w-7 lg:w-6 md:w-9 w-6 2xl:h-7 xl:h-8 lg:h-5 md:h-7 sm:h-6 h-4"
+          : "2xl:w-9 lg:w-6 md:w-9 w-6 2xl:h-7 lg:h-5 md:h-7 sm:h-6 h-4"
+      }  mb-2 ${iconColor}`}
     >
       <path
         strokeLinecap="round"
