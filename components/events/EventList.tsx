@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import EventItem from "./EventItem";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/store/store";
+import { useDispatch } from "react-redux";
 import { setIconColor, setIconSize } from "@/store/slices/eventSlice";
+import { dataType } from "@/utils/types/my-types";
 
-function EventList() {
-  const { allEvents } = useSelector((state: RootState) => state.events);
+function EventList(props: { events: Array<dataType> }) {
   const dispatch = useDispatch();
+  const { events } = props;
 
   useEffect(() => {
     dispatch(setIconColor("currentColor"));
@@ -15,7 +15,7 @@ function EventList() {
 
   return (
     <div className="w-screen min-h-screen overflow-y-auto flex flex-col justify-center items-center bg-primaryClr dark:bg-primaryClrDark">
-      {allEvents.map((event) => {
+      {events.map((event) => {
         return <EventItem key={event.id} event={event} />;
       })}
     </div>

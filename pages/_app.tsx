@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+import LayoutWrapper from "../components/layout/LayoutWrapper";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -14,7 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <LayoutWrapper>
+        <Component {...pageProps} />
+      </LayoutWrapper>
     </Provider>
   );
 }

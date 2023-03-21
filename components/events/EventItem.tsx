@@ -42,7 +42,7 @@ function EventItem(props: { event: dataType }) {
           </h3>
         </div>
         <div className="absolute right-4 bottom-4 text-neutral-900 dark:text-white">
-          <Button itemId={id as string} />
+          <Button itemId={id as string} buttonType={"event-item"} />
         </div>
       </div>
     </div>

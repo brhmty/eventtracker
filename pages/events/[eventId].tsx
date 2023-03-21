@@ -1,29 +1,32 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
-import {
-  setEventById,
-  setIconColor,
-  setIconSize,
-} from "@/store/slices/eventSlice";
+import { setIconColor, setIconSize } from "@/store/slices/eventSlice";
 import Calendar from "../../components/icons/Calendar";
 import MapPin from "../../components/icons/MapPin";
 import Image from "next/image";
+import { getEventById } from "@/utils/functions/functions";
+import { dataType } from "@/utils/types/my-types";
 
 function SelectedEvent() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const { eventId } = router.query;
-  const { selectedEvent } = useSelector((state: RootState) => state.events);
+  const event = router.query.eventId;
+  const selectedEvent: dataType = getEventById(event as string) as dataType;
 
   useEffect(() => {
     dispatch(setIconColor("text-btnClrDark"));
-    dispatch(setEventById(eventId as string));
     dispatch(setIconSize("eventId"));
   }, []);
+
+  if (!event) {
+    return (
+      <p className="mx-auto my-[30vh] font-semibold 2xl:text-2xl xl:text-xl lg:text-lg md:text-md sm:text-sm text-xs text-center text-black dark:text-white">
+        ...Loading
+      </p>
+    );
+  }
 
   return (
     <div className="w-screen h-screen overflow-y-auto bg-primaryClr dark:btnClrDark">
