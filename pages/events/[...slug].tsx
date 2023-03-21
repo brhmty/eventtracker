@@ -30,8 +30,8 @@ function FeaturedEvents() {
   ) {
     return (
       <div className="w-fit mx-auto flex flex-col items-center">
-        <div className="w-fit h-[10vh] px-8 my-4 flex items-center dark:bg-indigo-500">
-          <h1 className="2xl:text-4xl xl:text-xl lg:text-2xl md:text-4xl sm:text-3xl text-sm 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal font-xs text-black dark:text-indigo-900">
+        <div className="w-fit h-[10vh] px-8 my-4 flex items-center bg-red-200 dark:bg-indigo-500">
+          <h1 className="2xl:text-4xl xl:text-xl lg:text-2xl md:text-4xl sm:text-3xl text-sm 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal font-xs text-red-800 dark:text-indigo-900">
             Please adjust your date!
           </h1>
         </div>
@@ -45,8 +45,8 @@ function FeaturedEvents() {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <div className="w-fit mx-auto flex flex-col items-center">
-        <div className="w-fit h-[10vh] px-8 my-4 flex items-center dark:bg-indigo-500">
-          <h1 className="2xl:text-4xl xl:text-xl lg:text-2xl md:text-4xl sm:text-3xl text-sm 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal font-xs text-black dark:text-indigo-900">
+        <div className="w-fit h-[10vh] px-8 my-4 flex items-center bg-red-200 dark:bg-indigo-500">
+          <h1 className="2xl:text-4xl xl:text-xl lg:text-2xl md:text-4xl sm:text-3xl text-sm 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal font-xs text-red-800 dark:text-indigo-900">
             No events found for the chosen filter!
           </h1>
         </div>

@@ -3,6 +3,7 @@ import { dataType } from "@/utils/types/my-types";
 import Calendar from "./../icons/Calendar";
 import MapPin from "../icons/MapPin";
 import Button from "../ui/Button";
+import Image from "next/image";
 //injectedTo---EventList.tsx
 
 function EventItem(props: { event: dataType }) {
@@ -16,10 +17,12 @@ function EventItem(props: { event: dataType }) {
 
   return (
     <div className="2xl:w-1/2 w-2/3 2xl:h-60 xl:h-48 lg:h-60 md:h-96 sm:h-80 h-72 rounded-lg my-4 mx-auto flex lg:flex-row flex-col relative bg-white shadow-lg dark:bg-secondaryClrDark">
-      <img
+      <Image
         className="lg:w-1/3 w-full lg:h-full h-1/3 rounded-t-lg object-cover md:rounded-none md:rounded-l-lg"
         src={`/${image}`}
-        alt={image}
+        alt={image as string}
+        width="300"
+        height="300"
       />
       <div className="flex flex-col justify-center p-6">
         <h5 className="mb-2 2xl:text-4xl xl:text-xl lg:text-2xl md:text-4xl sm:text-3xl text-md font-medium text-neutral-800 dark:text-neutral-50">

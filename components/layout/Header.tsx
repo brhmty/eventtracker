@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Header() {
   return (
-    <div className="w-screen h-16 flex justify-between bg-secondaryClrDark">
+    <div className="absolute w-screen h-16 flex justify-between bg-secondaryClrDark">
       <Link
         href="/"
         className="2xl:text-4xl xl:text-3xl lg:text-2xl md:text-xl text-sm 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold font-medium md:ml-16 ml-10 self-center text-btnClr dark:text-secondaryClr cursor-pointer"
