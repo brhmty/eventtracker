@@ -1,15 +1,24 @@
 import React from "react";
 import EventList from "./../components/events/EventList";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { getFeaturedEvents } from "@/helpers/api-utils";
+import { dataType } from "@/utils/types/my-types";
 
-function HomePage() {
-  const { allEvents } = useSelector((state: RootState) => state.events);
+function HomePage(props: { events: Array<dataType> }) {
+  const { events } = props;
   return (
     <div>
-      <EventList events={allEvents} />
+      <EventList events={events} />
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const featuredEvents = await getFeaturedEvents();
+  return {
+    props: {
+      events: featuredEvents,
+    },
+  };
 }
 
 export default HomePage;

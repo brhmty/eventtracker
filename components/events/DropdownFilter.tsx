@@ -20,7 +20,7 @@ function DropdownFilter(props: {
 
   return (
     <form
-      className="2xl:w-1/2 w-2/3 lg:h-14 md:h-40 sm:h-32 h-24 mx-auto my-4 rounded-lg flex lg:flex-row flex-col justify-evenly items-center bg-white"
+      className="2xl:w-1/2 w-2/3 lg:h-14 md:h-40 sm:h-32 h-24 mx-auto mt-20 mb-4 rounded-lg flex lg:flex-row flex-col justify-evenly items-center bg-white"
       onSubmit={handleSubmit}
     >
       <div className="flex items-center">

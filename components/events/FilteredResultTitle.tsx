@@ -14,7 +14,7 @@ function FilteredResultTitle(props: { year: number; month: number }) {
   );
 
   return (
-    <div className="w-fit mx-auto flex flex-col items-center">
+    <div className="w-fit mx-auto pt-20 flex flex-col items-center">
       <h1 className="my-4 2xl:text-4xl xl:text-xl lg:text-2xl md:text-4xl sm:text-3xl text-md text-black dark:text-white">{`Events in ${humanReadableDate}`}</h1>
       <Button buttonType="filtered-result-title" />
     </div>

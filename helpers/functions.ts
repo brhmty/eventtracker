@@ -1,4 +1,4 @@
-import data from "../../utils/data/dummy-data";
+import data from "../utils/data/dummy-data";
 
 export const getFilteredEvents = (year: number, month: number) => {
   return data.filter((event) => {

@@ -5,16 +5,12 @@ import { dataType, iconsSize } from "@/utils/types/my-types";
 
 interface typeState {
   allEvents: Array<dataType>;
-  featuredEvents: object[];
-  filteredEvents: object[];
   iconColor: string;
   iconSize: iconsSize;
 }
 
 const initialState: typeState = {
   allEvents: data,
-  featuredEvents: [],
-  filteredEvents: [],
   iconColor: "currentColor",
   iconSize: "eventList",
 };
@@ -26,9 +22,6 @@ const eventSlice = createSlice({
     getAllEvents: (state) => {
       state.allEvents = data;
     },
-    getFeaturedEvents: (state) => {
-      state.featuredEvents = data.filter((event) => event.isFeatured);
-    },
     setIconColor(state, action: PayloadAction<string>) {
       state.iconColor = action.payload;
     },
@@ -39,7 +32,6 @@ const eventSlice = createSlice({
 });
 
 //reducerExports
-export const { getAllEvents, getFeaturedEvents, setIconColor, setIconSize } =
-  eventSlice.actions;
+export const { getAllEvents, setIconColor, setIconSize } = eventSlice.actions;
 
 export default eventSlice.reducer;

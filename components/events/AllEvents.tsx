@@ -1,10 +1,9 @@
 import React from "react";
 import EventList from "./EventList";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { dataType } from "@/utils/types/my-types";
 
-function AllEvents() {
-  const { allEvents } = useSelector((state: RootState) => state.events);
+function AllEvents(props: { allEvents: Array<dataType> }) {
+  const { allEvents } = props;
   return <EventList events={allEvents} />;
 }
 

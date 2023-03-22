@@ -1,44 +1,30 @@
 import React, { useEffect } from "react";
-import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { setIconColor, setIconSize } from "@/store/slices/eventSlice";
 import Calendar from "../../components/icons/Calendar";
 import MapPin from "../../components/icons/MapPin";
 import Image from "next/image";
-import { getEventById } from "@/utils/functions/functions";
 import { dataType } from "@/utils/types/my-types";
-import Button from "@/components/ui/Button";
+import { getEventById } from "@/helpers/api-utils";
+import { getFeaturedEvents } from "@/helpers/api-utils";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-function SelectedEvent() {
-  const router = useRouter();
+function SelectedEvent(props: { selectedEvent: dataType }) {
   const dispatch = useDispatch();
-
-  const event = router.query.eventId;
-  const selectedEvent: dataType = getEventById(event as string) as dataType;
+  const router = useRouter();
+  const { selectedEvent } = props;
 
   useEffect(() => {
     dispatch(setIconColor("text-btnClrDark"));
     dispatch(setIconSize("eventId"));
   }, []);
 
-  if (!event) {
+  if (router.isFallback) {
     return (
       <p className="mx-auto my-[30vh] font-semibold 2xl:text-2xl xl:text-xl lg:text-lg md:text-md sm:text-sm text-xs text-center text-black dark:text-white">
-        ...Loading
+        ...Loading!
       </p>
-    );
-  }
-
-  if (!selectedEvent) {
-    return (
-      <div className="w-fit mx-auto flex flex-col items-center">
-        <div className="w-fit h-[10vh] px-8 my-4 flex items-center bg-red-200 dark:bg-indigo-500">
-          <h1 className="2xl:text-4xl xl:text-xl lg:text-2xl md:text-4xl sm:text-3xl text-sm 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal font-xs text-red-800 dark:text-indigo-900">
-            No event found!
-          </h1>
-        </div>
-        <Button buttonType="filtered-result-title" />
-      </div>
     );
   }
 
@@ -83,6 +69,30 @@ function SelectedEvent() {
       </h3>
     </div>
   );
+}
+
+export async function getStaticProps(context: Params) {
+  const eventId = context.params.eventId;
+  const event = await getEventById(eventId);
+  const notFound = event ? false : true;
+
+  return {
+    props: {
+      selectedEvent: event,
+    },
+    revalidate: 3600,
+    notFound,
+  };
+}
+
+export async function getStaticPaths() {
+  const allEvents = await getFeaturedEvents();
+  const paths = allEvents.map((event) => ({ params: { eventId: event.id } }));
+
+  return {
+    paths,
+    fallback: true,
+  };
 }
 
 export default SelectedEvent;
