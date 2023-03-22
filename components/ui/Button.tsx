@@ -9,6 +9,7 @@ function Button(props: { itemId?: string; buttonType?: string }) {
     return (
       <div className="flex justify-center space-x-2">
         <button
+          type="submit"
           data-te-ripple-init
           data-te-ripple-color="light"
           className="md:w-max w-fit rounded md:px-2 sm:px-3 px-2 md:py-2 sm:py-1.5 py-1 text-xs font-medium uppercase leading-normal flex bg-btnClr dark:bg-btnClrDark text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] whitespace-nowrap"

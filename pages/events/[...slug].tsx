@@ -8,11 +8,10 @@ import { dataType } from "@/utils/types/my-types";
 
 function FeaturedEvents(props: {
   date: { numMonth: number; numYear: number };
-  filteredData: string;
   filteredEvents: Array<dataType>;
   hasError: boolean;
 }) {
-  const { date, filteredData, filteredEvents, hasError } = props;
+  const { date, filteredEvents, hasError } = props;
 
   if (hasError) {
     return (
