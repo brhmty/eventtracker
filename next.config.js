@@ -3,10 +3,10 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    firebase_url:
+    FIREBASE_URL:
       "https://nextjs-37af1-default-rtdb.firebaseio.com/events.json",
-    mongodb_username: "brhmtydev",
-    mongodb_password: "44PvRqsk91EydhIb",
+    MONGODB_USERNAME: "brhmtydev",
+    MONGODB_PASSWORD: "rOcEXcPHQD0Ctj4R",
   },
 };
 

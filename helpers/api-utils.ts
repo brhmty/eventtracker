@@ -4,7 +4,7 @@ export async function getAllEvents() {
   let response;
 
   try {
-    response = await fetch(`${process.env.firebase_url}`);
+    response = await fetch(`${process.env.FIREBASE_URL}`);
   } catch (e) {
     console.log("Fetching data from api failed!");
     return [];
