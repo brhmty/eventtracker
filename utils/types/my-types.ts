@@ -9,3 +9,13 @@ export interface dataType {
 }
 
 export type iconsSize = "eventList" | "eventId";
+
+export interface commentType {
+  _id: string;
+  comment: {
+    eventId: string;
+    email: string;
+    name: string;
+    comment: string;
+  };
+}

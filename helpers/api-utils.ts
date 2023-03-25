@@ -1,17 +1,27 @@
 import { dataType } from "@/utils/types/my-types";
 
 export async function getAllEvents() {
-  const response = await fetch(
-    "https://nextjs-37af1-default-rtdb.firebaseio.com/events.json"
-  );
-  const data = await response.json();
-  const events: Array<dataType> = [];
-  for (const key in data) {
-    events.push({
-      id: key,
-      ...data[key],
-    });
+  let response;
+
+  try {
+    response = await fetch(`${process.env.firebase_url}`);
+  } catch (e) {
+    console.log("Fetching data from api failed!");
+    return [];
   }
+
+  const events: Array<dataType> = [];
+
+  if (response) {
+    const data = await response.json();
+    for (const key in data) {
+      events.push({
+        id: key,
+        ...data[key],
+      });
+    }
+  }
+
   return events;
 }
 

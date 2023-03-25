@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 import { useRouter } from "next/router";
-import { setIconColor, setIconSize } from "@/store/slices/eventSlice";
+import {
+  setIconColor,
+  setIconSize,
+  showHideComment,
+} from "@/store/slices/eventSlice";
 import Calendar from "../../components/icons/Calendar";
 import MapPin from "../../components/icons/MapPin";
 import Image from "next/image";
@@ -9,16 +14,21 @@ import { dataType } from "@/utils/types/my-types";
 import { getEventById } from "@/helpers/api-utils";
 import { getFeaturedEvents } from "@/helpers/api-utils";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import CommentForm from "@/components/events/input/CommentForm";
 
-function SelectedEvent(props: { selectedEvent: dataType }) {
+function SelectedEvent(props: { selectedEvent: dataType; eventId: string }) {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { selectedEvent } = props;
+  const { selectedEvent, eventId } = props;
+
+  useEffect(() => {
+    dispatch(showHideComment(false));
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(setIconColor("text-btnClrDark"));
     dispatch(setIconSize("eventId"));
-  }, []);
+  }, [dispatch]);
 
   if (router.isFallback) {
     return (
@@ -29,9 +39,9 @@ function SelectedEvent(props: { selectedEvent: dataType }) {
   }
 
   return (
-    <div className="w-screen h-screen bg-primaryClr dark:btnClrDark">
-      <div className="w-screen 2xl:h-[25rem] xl:h-52 lg:h-56 md:h-52 h-40 pt-20 flex justify-center max-lg:items-center items-baseline bg-btnClrDark dark:bg-primaryClrDark">
-        <h1 className="2xl:text-8xl xl:text-4xl lg:text-3xl md:text-4xl sm:text-3xl text-xl 2xl:mt-10 xl:mt-8 lg:mt-12 max-lg:mt-0 mt-8 font-extrabold text-white">
+    <div className="w-screen min-h-screen">
+      <div className="w-screen 2xl:h-[25rem] xl:h-52 lg:h-56 md:h-52 h-40 pt-20 flex justify-center max-lg:items-center items-baseline bg-btnClrDark dark:bg-primaryClr">
+        <h1 className="2xl:text-8xl xl:text-4xl lg:text-3xl md:text-4xl sm:text-3xl text-xl 2xl:mt-10 xl:mt-8 lg:mt-12 max-lg:mt-0 mt-8 font-extrabold text-white dark:text-btnClrDark">
           {selectedEvent.title}
         </h1>
       </div>
@@ -67,6 +77,7 @@ function SelectedEvent(props: { selectedEvent: dataType }) {
       <h3 className="lg:p-20 md:p-12 p-4 2xl:text-3xl lg:text-xl md:text-lg text-base 2xl:font-extrabold lg:font-bold md:font-semibold font-medium text-center lg:absolute 2xl:top-[42rem] xl:top-[25rem] lg:top-[25rem]">
         {selectedEvent.description}
       </h3>
+      <CommentForm eventId={eventId} />
     </div>
   );
 }
@@ -79,6 +90,7 @@ export async function getStaticProps(context: Params) {
   return {
     props: {
       selectedEvent: event,
+      eventId: eventId,
     },
     revalidate: 3600,
     notFound,
@@ -86,8 +98,10 @@ export async function getStaticProps(context: Params) {
 }
 
 export async function getStaticPaths() {
-  const allEvents = await getFeaturedEvents();
-  const paths = allEvents.map((event) => ({ params: { eventId: event.id } }));
+  const featuredEvents = await getFeaturedEvents();
+  const paths = featuredEvents.map((event) => ({
+    params: { eventId: event.id },
+  }));
 
   return {
     paths,
