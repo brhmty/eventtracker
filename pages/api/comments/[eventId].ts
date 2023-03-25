@@ -57,13 +57,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     try {
       if (client) {
-        documents = await fetchDocument(
-          client,
-          "event",
-          "comments",
-          { "comment.eventId": eventId },
-          `{ "comment.eventId": eventId }`
-        );
+        documents = await fetchDocument(client, "event", "comments", {
+          "comment.eventId": eventId,
+        });
       }
     } catch (e) {
       res.status(500).json({ message: "Fetching data failed!" });

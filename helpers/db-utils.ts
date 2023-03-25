@@ -22,13 +22,12 @@ export async function fetchDocument(
   client: MongoClient,
   dbName: string,
   collection: string,
-  filterQuery: object,
-  sortQuery: string
+  filterQuery: object
 ) {
   const db = client.db(dbName);
   return await db
     .collection(collection)
     .find(filterQuery)
-    .sort(sortQuery)
+    .sort({ _id: -1 })
     .toArray();
 }
