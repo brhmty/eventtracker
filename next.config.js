@@ -7,7 +7,7 @@ const nextConfig = {
     firebase_url:
       "https://nextjs-37af1-default-rtdb.firebaseio.com/events.json",
     mongodb_username: "brhmtydev",
-    mongodb_password: "44PvRqsk91EydhIb@cluster0",
+    mongodb_password: "44PvRqsk91EydhIb",
   },
 };
 
