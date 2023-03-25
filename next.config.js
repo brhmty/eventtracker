@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 
 const nextConfig = {
   reactStrictMode: true,
@@ -11,8 +10,4 @@ const nextConfig = {
   },
 };
 
-module.exports = (phase) => {
-  if (phase == PHASE_DEVELOPMENT_SERVER) {
-    return nextConfig;
-  }
-};
+module.exports = nextConfig;

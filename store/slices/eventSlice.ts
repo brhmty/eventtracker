@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import data from "../../utils/data/dummy-data";
 import { comment } from "../../utils/data/text";
-import { dataType, iconsSize, commentType } from "@/utils/types/my-types";
+import { iconsSize, commentType } from "@/utils/types/my-types";
 
 interface typeState {
   iconColor: string;
